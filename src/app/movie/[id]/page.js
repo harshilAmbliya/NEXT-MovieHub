@@ -12,13 +12,17 @@ const MovieData = async ({ params }) => {
     };
     const res = await fetch(url, options);
     const data = await res.json();
+    if (data.length === 0) {
+        return <div>No movie found</div>;
+      }
     const moviedata = data[0].details;
    
     
     return (
         <div>
             {
-                        <section className="text-gray-600 body-font">
+                       !moviedata ?  <div>No details found for this movie</div>
+                       : <section className="text-gray-600 body-font">
                             <div className="container mx-auto flex px-5 py-5  flex-col items-center">
                            
                                 <div className="lg:max-w-lg lg:w-full md:w-full w-5/6  ">
